@@ -4,8 +4,13 @@ import PropTypes from "prop-types";
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import { useRouter } from "next/router";
 
-export default function CardTable({ color }) {
+export default function CardTable({ color, title }) {
+  const router = useRouter();
+  function handleAdd() {
+    router.push(router.route + "/add");
+  }
   return (
     <>
       <div
@@ -23,8 +28,15 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Card Tables
+                {title ?? "Card Tables"}
               </h3>
+              <button
+                className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => handleAdd()}
+              >
+                Add
+              </button>
             </div>
           </div>
         </div>

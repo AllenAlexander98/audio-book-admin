@@ -18,15 +18,12 @@ export default function Sidebar() {
             type="button"
             onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
           >
-            <i className="fas fa-bars"></i>
+            <i className="fas fa-bars" />
           </button>
           {/* Brand */}
-          <Link href="/">
-            <a
-              href="#pablo"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            >
-              Notus NextJS
+          <Link href="/admin/dashboard">
+            <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+              Audio Book
             </a>
           </Link>
           {/* User */}
@@ -50,10 +47,7 @@ export default function Sidebar() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
-                      className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    >
+                    <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
                       Notus NextJS
                     </a>
                   </Link>
@@ -64,7 +58,7 @@ export default function Sidebar() {
                     className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                     onClick={() => setCollapseShow("hidden")}
                   >
-                    <i className="fas fa-times"></i>
+                    <i className="fas fa-times" />
                   </button>
                 </div>
               </div>
@@ -92,7 +86,6 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link href="/admin/dashboard">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
@@ -107,8 +100,77 @@ export default function Sidebar() {
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
-                    ></i>{" "}
+                    />
                     Dashboard
+                  </a>
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link href="/admin/categories">
+                  <a
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/categories") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/categories") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    />
+                    Categories
+                  </a>
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link href="/admin/books">
+                  <a
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/books") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/books") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    />
+                    Books
+                  </a>
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link href="/admin/users">
+                  <a
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/users") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/users") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    />
+                    Users
                   </a>
                 </Link>
               </li>
@@ -116,7 +178,6 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link href="/admin/settings">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/settings") !== -1
@@ -131,7 +192,7 @@ export default function Sidebar() {
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
-                    ></i>{" "}
+                    />
                     Settings
                   </a>
                 </Link>
@@ -140,7 +201,6 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link href="/admin/tables">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/tables") !== -1
@@ -155,7 +215,7 @@ export default function Sidebar() {
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
-                    ></i>{" "}
+                    />
                     Tables
                   </a>
                 </Link>
@@ -164,7 +224,6 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link href="/admin/maps">
                   <a
-                    href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/maps") !== -1
@@ -179,7 +238,7 @@ export default function Sidebar() {
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
-                    ></i>{" "}
+                    />
                     Maps
                   </a>
                 </Link>
@@ -197,11 +256,8 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link href="/auth/login">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm" />
                     Login
                   </a>
                 </Link>
@@ -209,11 +265,8 @@ export default function Sidebar() {
 
               <li className="items-center">
                 <Link href="/auth/register">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm" />
                     Register
                   </a>
                 </Link>
@@ -231,11 +284,8 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link href="/landing">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm" />
                     Landing Page
                   </a>
                 </Link>
@@ -243,11 +293,8 @@ export default function Sidebar() {
 
               <li className="items-center">
                 <Link href="/profile">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  >
-                    <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <a className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+                    <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm" />
                     Profile Page
                   </a>
                 </Link>
@@ -268,7 +315,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fas fa-paint-brush mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fas fa-paint-brush mr-2 text-blueGray-300 text-base" />
                   Styles
                 </a>
               </li>
@@ -279,7 +326,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-css3-alt mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-css3-alt mr-2 text-blueGray-300 text-base" />
                   CSS Components
                 </a>
               </li>
@@ -290,7 +337,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-angular mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-angular mr-2 text-blueGray-300 text-base" />
                   Angular
                 </a>
               </li>
@@ -301,7 +348,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-js-square mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-js-square mr-2 text-blueGray-300 text-base" />
                   Javascript
                 </a>
               </li>
@@ -312,7 +359,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-react mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-react mr-2 text-blueGray-300 text-base" />
                   NextJS
                 </a>
               </li>
@@ -323,7 +370,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-react mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-react mr-2 text-blueGray-300 text-base" />
                   React
                 </a>
               </li>
@@ -334,7 +381,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fas fa-link mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fas fa-link mr-2 text-blueGray-300 text-base" />
                   Svelte
                 </a>
               </li>
@@ -345,7 +392,7 @@ export default function Sidebar() {
                   target="_blank"
                   className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
                 >
-                  <i className="fab fa-vuejs mr-2 text-blueGray-300 text-base"></i>
+                  <i className="fab fa-vuejs mr-2 text-blueGray-300 text-base" />
                   VueJS
                 </a>
               </li>
