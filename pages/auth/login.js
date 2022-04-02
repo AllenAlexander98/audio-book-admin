@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 // layout for page
 
@@ -8,7 +9,16 @@ import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   function handleLogin() {
+    // console.log(email, password);
+    
+    // toast.success("Success!");
+    // toast.warning("Warning!");
+    // toast.error("Error!");
     router.push("/admin/dashboard");
   }
 
@@ -58,6 +68,8 @@ export default function Login() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                     />
                   </div>
 
@@ -72,6 +84,8 @@ export default function Login() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                     />
                   </div>
                   <div>

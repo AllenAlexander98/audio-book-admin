@@ -15,9 +15,9 @@ export default function Index() {
         <div className="w-full mb-12 px-4">
           <CardTable title="Books" />
         </div>
-        <div className="w-full mb-12 px-4">
+        {/* <div className="w-full mb-12 px-4">
           <CardTable color="dark" title="Books" />
-        </div>
+        </div> */}
       </div>
     </>
   );

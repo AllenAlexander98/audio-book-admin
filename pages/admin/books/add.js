@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 
-import CardSettings from "components/Cards/CardSettings.js";
+import BookCardSettings from "components/Cards/BookCardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
 
 // layout for page
@@ -14,7 +14,7 @@ export default function Add() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
-          <CardSettings title="Add new book" />
+          <BookCardSettings title="Add new book" />
         </div>
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile />

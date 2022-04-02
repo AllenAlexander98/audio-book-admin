@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 import PageChange from "components/PageChange/PageChange.js";
 
@@ -74,6 +76,7 @@ export default class MyApp extends App {
           <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
         </Head>
         <Layout>
+          <ToastContainer />
           <Component {...pageProps} />
         </Layout>
       </React.Fragment>
