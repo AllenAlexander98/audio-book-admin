@@ -4,8 +4,14 @@ import Link from "next/link";
 // layout for page
 
 import Auth from "layouts/Auth.js";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
+  function handleLogin() {
+    router.push("/admin/dashboard");
+  }
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -40,7 +46,7 @@ export default function Login() {
                 <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+                <div>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -85,11 +91,12 @@ export default function Login() {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={() => handleLogin()}
                     >
                       Sign In
                     </button>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
             <div className="flex flex-wrap mt-6 relative">
