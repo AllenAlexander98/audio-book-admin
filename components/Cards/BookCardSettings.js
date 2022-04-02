@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // components
 
@@ -9,6 +11,37 @@ export default function BookCardSettings({ title }) {
   const [enteredDescription, setEnteredDescription] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
   const [enteredCategory, setEnteredCategory] = useState("");
+  // const notify = () => {
+  //   toast("Default Notification !");
+
+  //   toast.success("Success Notification !", {
+  //     position: toast.POSITION.TOP_CENTER,
+  //   });
+
+  //   toast.error("Error Notification !", {
+  //     position: toast.POSITION.TOP_LEFT,
+  //   });
+
+  //   toast.warn("Warning Notification !", {
+  //     position: toast.POSITION.BOTTOM_LEFT,
+  //   });
+
+  //   toast.info("Info Notification !", {
+  //     position: toast.POSITION.BOTTOM_CENTER,
+  //   });
+
+  //   toast("Custom Style Notification with css class!", {
+  //     position: toast.POSITION.BOTTOM_RIGHT,
+  //     className: "foo-bar",
+  //   });
+  // };
+
+  const notifySuccess = () => {
+    toast.success("Added New Book !", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+    });
+  };
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -42,6 +75,11 @@ export default function BookCardSettings({ title }) {
     };
 
     console.log(enteredData);
+    setEnteredName("");
+    setEnteredAuthor("");
+    setEnteredDescription("");
+    setEnteredPrice("");
+    notifySuccess();
   };
 
   return (
@@ -69,6 +107,7 @@ export default function BookCardSettings({ title }) {
                     Name
                   </label>
                   <input
+                    value={enteredName}
                     onChange={nameChangeHandler}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -84,6 +123,7 @@ export default function BookCardSettings({ title }) {
                     Author
                   </label>
                   <input
+                    value={enteredAuthor}
                     onChange={authorChangeHandler}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -117,6 +157,7 @@ export default function BookCardSettings({ title }) {
                     Description
                   </label>
                   <textarea
+                    value={enteredDescription}
                     onChange={descriptionChangeHandler}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -134,6 +175,7 @@ export default function BookCardSettings({ title }) {
                     Price
                   </label>
                   <input
+                    value={enteredPrice}
                     onChange={priceChangeHandler}
                     type="number"
                     min="1000"
@@ -202,6 +244,7 @@ export default function BookCardSettings({ title }) {
               </button>
             </div>
           </form>
+          <ToastContainer />
         </div>
       </div>
     </>
