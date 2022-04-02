@@ -8,11 +8,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CategoryDropdown({ options }) {
+export default function CategoryDropdown(props) {
   const [selectedOption, setSelectedOption] = useState("Options");
 
   const clickedHandler = (event) => {
     event.preventDefault();
+    props.onSaveCategory(event.target.firstChild.data);
     setSelectedOption(event.target.firstChild.data);
   };
 
@@ -36,7 +37,7 @@ export default function CategoryDropdown({ options }) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {options.map((option, index) => (
+            {props.options.map((option, index) => (
               <Menu.Item key={index}>
                 {({ active }) => (
                   <a

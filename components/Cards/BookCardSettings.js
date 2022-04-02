@@ -8,6 +8,7 @@ export default function BookCardSettings({ title }) {
   const [enteredAuthor, setEnteredAuthor] = useState("");
   const [enteredDescription, setEnteredDescription] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
+  const [enteredCategory, setEnteredCategory] = useState("");
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -25,6 +26,10 @@ export default function BookCardSettings({ title }) {
     setEnteredPrice(event.target.value);
   };
 
+  const saveCategoryHandler = (enteredCategoryData) => {
+    setEnteredCategory(enteredCategoryData);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -33,6 +38,7 @@ export default function BookCardSettings({ title }) {
       author: enteredAuthor,
       description: enteredDescription,
       price: enteredPrice,
+      category: enteredCategory,
     };
 
     console.log(enteredData);
@@ -94,6 +100,7 @@ export default function BookCardSettings({ title }) {
                   </label>
                   <CategoryDropdown
                     options={["Action", "Life Style", "Health", "Economic"]}
+                    onSaveCategory={saveCategoryHandler}
                   ></CategoryDropdown>
                 </div>
               </div>
