@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 
-import CardTable from "components/Cards/CardTable.js";
+import CardUsersTable from "components/Cards/CardUsersTable.js";
 
 // layout for page
 
@@ -13,10 +13,10 @@ export default function Index() {
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <CardTable title="Users" />
+          <CardUsersTable title="Users"/>
         </div>
         {/* <div className="w-full mb-12 px-4">
-          <CardTable color="dark" title="Users" />
+          <CardUsersTable color="dark" title="Users" />
         </div> */}
       </div>
     </>
