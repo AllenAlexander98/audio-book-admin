@@ -1,4 +1,4 @@
-import UpdateIndexDropdown from "components/Dropdowns/UpdateIndexDropdown";
+import GetCategoryDropdown from "components/Dropdowns/GetCategoryDropdown";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -23,13 +23,17 @@ const CATEGORIES = [
   },
 ];
 
-export default function AddOrUpdateBookCard({ title, id, bookInfo }) {
-  const [bookTitle, setBookTitle] = useState(bookInfo.title);
-  const [bookAuthor, setBookAuthor] = useState(bookInfo.author);
-  const [bookCategory, setBookCategory] = useState(bookInfo.category);
-  const [bookPrice, setBookPrice] = useState(bookInfo.price);
-  const [bookDescription, setBookDescription] = useState(bookInfo.description);
-  const [bookImage, setBookImage] = useState(bookInfo.image);
+export default function InformationBookCard({ title, id, bookInfo }) {
+  const [bookTitle, setBookTitle] = useState(bookInfo?.title ?? "");
+  const [bookAuthor, setBookAuthor] = useState(bookInfo?.author ?? "");
+  const [bookCategory, setBookCategory] = useState(bookInfo?.category ?? "");
+  const [bookPrice, setBookPrice] = useState(bookInfo?.price ?? 0);
+  const [bookDescription, setBookDescription] = useState(
+    bookInfo?.description ?? ""
+  );
+  const [bookImage, setBookImage] = useState(
+    bookInfo?.image ?? "/img/placeholder.png"
+  );
 
   useEffect(() => {
     if (id) {
@@ -170,7 +174,7 @@ export default function AddOrUpdateBookCard({ title, id, bookInfo }) {
                   >
                     Category
                   </label>
-                  <UpdateIndexDropdown
+                  <GetCategoryDropdown
                     label="Category"
                     dropdownList={CATEGORIES}
                     action={setBookCategory}

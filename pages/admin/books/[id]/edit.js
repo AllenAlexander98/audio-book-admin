@@ -1,4 +1,4 @@
-import AddOrUpdateBookCard from "components/Cards/AddOrUpdateBookCard";
+import InformationBookCard from "components/Cards/InformationBookCard";
 
 import Admin from "layouts/Admin.js";
 import { useRouter } from "next/router";
@@ -21,7 +21,7 @@ export default function Edit() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <AddOrUpdateBookCard
+          <InformationBookCard
             title={`Edit ${bookInfo.title}`}
             id={id}
             bookInfo={bookInfo}
