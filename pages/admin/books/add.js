@@ -1,4 +1,4 @@
-import InformationBookCard from "components/Cards/InformationBookCard";
+import BookCardSettings from "components/Cards/BookCardSettings";
 
 import Admin from "layouts/Admin.js";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ export default function Add() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-4">
-          <InformationBookCard title={`Add new book`} id={id} />
+          <BookCardSettings title={`Add new book`} id={id} />
         </div>
       </div>
     </>

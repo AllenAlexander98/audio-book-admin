@@ -1,28 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import TablePagination from "@mui/material/TablePagination";
-// components
-
-import CategoryTableDropdown from "components/Dropdowns/CategoryTableDropdown.js";
+// import TablePagination from "@mui/material/TablePagination";
+import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function CategoryCardTable({ color, title, categories }) {
   const router = useRouter();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [page, setPage] = useState(0);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  function handleAdd() {
-    router.push(router.route + "/add");
-  }
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
-  console.log("category:", categories);
   return (
     <>
       <div
@@ -42,13 +37,13 @@ export default function CategoryCardTable({ color, title, categories }) {
               >
                 {title ?? "Card Tables"}
               </h3>
-              <button
-                className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => handleAdd()}
-              >
-                Add
-              </button>
+            </div>
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <Link href={`${router.route}/add`}>
+                <a className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                  Add
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -99,10 +94,10 @@ export default function CategoryCardTable({ color, title, categories }) {
             </thead>
             <tbody>
               {categories
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((category, key) => (
                   <tr key={key}>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                       <span
                         className={
                           "ml-3 font-bold " +
@@ -122,20 +117,20 @@ export default function CategoryCardTable({ color, title, categories }) {
                     </td>
 
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                      <CategoryTableDropdown categoryId={category.id} />
+                      <TableDropdown router={router} id={category.id} />
                     </td>
                   </tr>
                 ))}
             </tbody>
           </table>
-          <TablePagination
+          {/* <TablePagination
             component="div"
             count={100}
             page={page}
             onPageChange={handleChangePage}
             rowsPerPage={rowsPerPage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+          /> */}
         </div>
       </div>
     </>

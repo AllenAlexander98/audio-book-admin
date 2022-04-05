@@ -1,17 +1,17 @@
-import React from "react";
 import { createPopper } from "@popperjs/core";
 import { useRouter } from "next/router";
+import { createRef, useState } from "react";
 
 const UserDropdown = () => {
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = createRef();
+  const popoverDropdownRef = createRef();
   const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
-    });
     setDropdownPopoverShow(true);
+    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+      placement: "bottom-end",
+    });
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
@@ -24,11 +24,9 @@ const UserDropdown = () => {
   return (
     <>
       <a
-        className="text-blueGray-500 block"
-        href="#pablo"
+        className="text-blueGray-500 block cursor-pointer"
         ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={() => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
@@ -58,29 +56,10 @@ const UserDropdown = () => {
         >
           Action
         </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
-        </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
-          href="#pablo"
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
           }
           onClick={() => handleLogout()}
         >

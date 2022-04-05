@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function CategoryCardSettings({ title, category }) {
@@ -24,13 +24,11 @@ export default function CategoryCardSettings({ title, category }) {
                 type="submit"
                 onClick={() => handleSubmit()}
               >
-                save
+                Save
               </button>
             </div>
           </div>
           <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <hr className="mt-6 border-b-1 border-blueGray-300" />
-
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Category Information
             </h6>
@@ -41,7 +39,7 @@ export default function CategoryCardSettings({ title, category }) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    title
+                    Name
                   </label>
                   <input
                     type="text"
@@ -60,7 +58,7 @@ export default function CategoryCardSettings({ title, category }) {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    About me
+                    Description
                   </label>
                   <textarea
                     type="text"

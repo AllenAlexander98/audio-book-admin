@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const users = [
   {
+    id: 1,
     firstName: "Wayne",
     lastName: "Albert",
     fullName: "Wayne Albert",
@@ -12,6 +14,7 @@ const users = [
     address: "234, Dimitri, San Diego, CA, New Jersey",
   },
   {
+    id: 2,
     firstName: "Perry",
     lastName: "Mattie",
     fullName: "Perry Mattie",
@@ -19,6 +22,7 @@ const users = [
     address: "224, Dimitri, San Jose, CA, Ohio",
   },
   {
+    id: 3,
     firstName: "Niya",
     lastName: "Mattie",
     fullName: "Niya Mattie",
@@ -26,6 +30,7 @@ const users = [
     address: "713, Dimitri, New York City, NY, South Carolina",
   },
   {
+    id: 4,
     firstName: "Jade",
     lastName: "Konnor",
     fullName: "Jade Konnor",
@@ -33,6 +38,7 @@ const users = [
     address: "787, Easy, Dallas, TX, North Dakota",
   },
   {
+    id: 5,
     firstName: "Daron",
     lastName: "Mckenzie",
     fullName: "Daron Mckenzie",
@@ -40,6 +46,7 @@ const users = [
     address: "167, Easter, New York City, NY, New Jersey",
   },
   {
+    id: 6,
     firstName: "Ryleigh",
     lastName: "Talon",
     fullName: "Ryleigh Talon",
@@ -47,6 +54,7 @@ const users = [
     address: "304, Elgin, New York City, NY, North Carolina",
   },
   {
+    id: 7,
     firstName: "Ryleigh",
     lastName: "Albert",
     fullName: "Ryleigh Albert",
@@ -54,6 +62,7 @@ const users = [
     address: "818, Department, Dallas, TX, Oregon",
   },
   {
+    id: 8,
     firstName: "Kentrell",
     lastName: "Belen",
     fullName: "Kentrell Belen",
@@ -61,6 +70,7 @@ const users = [
     address: "149, Dimitri, San Antonio, TX, North Carolina",
   },
   {
+    id: 9,
     firstName: "Cedrick",
     lastName: "Talon",
     fullName: "Cedrick Talon",
@@ -68,6 +78,7 @@ const users = [
     address: "576, Dock, San Diego, CA, PennsylvaniaRhode Island",
   },
   {
+    id: 10,
     firstName: "Wayne",
     lastName: "Jessie",
     fullName: "Wayne Jessie",
@@ -75,7 +86,7 @@ const users = [
     address: "215, Easy, San Jose, CA, South Carolina",
   },
 ];
-const pageList = [];
+const pageList = [1, 2, 3, 4, 5, 6, 7];
 const numPage = 10;
 function fakeData() {
   var firstNames = [
@@ -169,9 +180,9 @@ function createPageList(numPage) {
   }
 }
 
-export default function CardUsersTable({ color, title }) {
+export default function UserCardTable({ color, title }) {
   const router = useRouter();
-  createPageList(numPage);
+
   return (
     <>
       <div
@@ -191,15 +202,13 @@ export default function CardUsersTable({ color, title }) {
               >
                 {title ?? "Card Tables"}
               </h3>
-              <button
-                className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={() => {
-                  router.push(router.route + "/add");
-                }}
-              >
-                Add
-              </button>
+            </div>
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <Link href={`${router.route}/add`}>
+                <a className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                  Add
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -290,7 +299,7 @@ export default function CardUsersTable({ color, title }) {
                     {user.address}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                    <TableDropdown />
+                    <TableDropdown router={router} id={user.id} />
                   </td>
                 </tr>
               ))}
@@ -299,7 +308,7 @@ export default function CardUsersTable({ color, title }) {
         </div>
       </div>
 
-      <div className="container flex justify-center mx-auto">
+      {/* <div className="container flex justify-center mx-auto">
         <ul className="flex">
           <li>
             <button className="px-4 py-2 text-gray-600 bg-white border border-gray-600">
@@ -320,15 +329,15 @@ export default function CardUsersTable({ color, title }) {
             </button>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 }
 
-CardUsersTable.defaultProps = {
+UserCardTable.defaultProps = {
   color: "light",
 };
 
-CardUsersTable.propTypes = {
+UserCardTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

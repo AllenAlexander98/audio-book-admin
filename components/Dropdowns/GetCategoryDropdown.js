@@ -1,40 +1,22 @@
-import React from "react";
 import { createPopper } from "@popperjs/core";
+import { createRef, useState } from "react";
 
-const GetCategoryDropdown = (props) => {
-  const { label, dropdownList, action } = props;
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const [dropdownValue, setDropdownValue] = React.useState(null);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+const GetCategoryDropdown = ({ label, categories, action }) => {
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const [dropdownValue, setDropdownValue] = useState(null);
+  const btnDropdownRef = createRef();
+  const popoverDropdownRef = createRef();
 
   const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
-    });
     setDropdownPopoverShow(true);
+    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+      placement: "bottom-end",
+    });
   };
 
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
-
-  const showDropdownList = (list) =>
-    list.map((item, key) => (
-      <a
-        key={key}
-        className={
-          "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        }
-        onClick={() => {
-          setDropdownValue(item);
-          setDropdownPopoverShow(false);
-          action(item.id);
-        }}
-      >
-        {item.name}
-      </a>
-    ));
 
   return (
     <>
@@ -55,7 +37,23 @@ const GetCategoryDropdown = (props) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg w-full"
         }
       >
-        <div>{showDropdownList(dropdownList)}</div>
+        <div>
+          {categories.map((category, key) => (
+            <a
+              key={key}
+              className={
+                "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+              }
+              onClick={() => {
+                setDropdownValue(category);
+                setDropdownPopoverShow(false);
+                action(category.id);
+              }}
+            >
+              {category.name}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );

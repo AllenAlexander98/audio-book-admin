@@ -1,16 +1,17 @@
-import React from "react";
 import { createPopper } from "@popperjs/core";
+import Link from "next/link";
+import { createRef, useState } from "react";
 
-const NotificationDropdown = () => {
+const TableDropdown = ({ router, id }) => {
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = createRef();
+  const popoverDropdownRef = createRef();
   const openDropdownPopover = () => {
+    setDropdownPopoverShow(true);
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "left-start",
     });
-    setDropdownPopoverShow(true);
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
@@ -18,11 +19,9 @@ const NotificationDropdown = () => {
   return (
     <>
       <a
-        className="text-blueGray-500 py-1 px-3"
-        href="#pablo"
+        className="text-blueGray-500 py-1 px-3 cursor-pointer"
         ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={() => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
@@ -35,36 +34,27 @@ const NotificationDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
-        </a>
+        <Link href={`${router.route}/${id}/edit`}>
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            }
+          >
+            Edit
+          </a>
+        </Link>
+        <Link href={`#`}>
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            }
+          >
+            Delete
+          </a>
+        </Link>
       </div>
     </>
   );
 };
 
-export default NotificationDropdown;
+export default TableDropdown;

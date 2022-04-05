@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function FooterAdmin() {
   return (
     <>
@@ -14,7 +12,7 @@ export default function FooterAdmin() {
                   href="https://www.creative-tim.com?ref=nnjs-footer-admin"
                   className="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  - Team 2 - ĐACNPM
                 </a>
               </div>
             </div>
