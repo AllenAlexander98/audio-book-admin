@@ -1,7 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 
-const UpdateIndexDropdown = (props) => {
+const GetCategoryDropdown = (props) => {
   const { label, dropdownList, action } = props;
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const [dropdownValue, setDropdownValue] = React.useState(null);
@@ -23,9 +23,8 @@ const UpdateIndexDropdown = (props) => {
     list.map((item, key) => (
       <a
         key={key}
-        href="#pablo"
         className={
-          "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         }
         onClick={() => {
           setDropdownValue(item);
@@ -40,8 +39,7 @@ const UpdateIndexDropdown = (props) => {
   return (
     <>
       <a
-        className="border-0 shadow ease-linear transition-all rounded duration-150 bg-white focus:outline-none hover:text-blueGray-500 text-blueGray-700 px-3 py-3 flex items-center text-sm"
-        href="#pablo"
+        className="cursor-pointer border-0 shadow ease-linear transition-all rounded duration-150 bg-white focus:outline-none hover:text-blueGray-500 text-blueGray-700 px-3 py-3 flex items-center text-sm"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -63,4 +61,4 @@ const UpdateIndexDropdown = (props) => {
   );
 };
 
-export default UpdateIndexDropdown;
+export default GetCategoryDropdown;
