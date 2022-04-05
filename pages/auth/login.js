@@ -1,25 +1,49 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { validateEmail } from "../../lib/Helper";
 
-// layout for page
+// layoutfor page
 
 import Auth from "layouts/Auth.js";
 import { useRouter } from "next/router";
 
+const superAdmin = {
+  email: "admin@voiz.vn",
+  password: "123456",
+};
 export default function Login() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [rememberMe, setRememberMe] = useState(false);
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleChangeRememberMe = (event) => {
+    setRememberMe(event.target.checked);
+  };
+
   function handleLogin() {
-    // console.log(email, password);
-    
-    // toast.success("Success!");
-    // toast.warning("Warning!");
-    // toast.error("Error!");
-    router.push("/admin/dashboard");
+    // giống github, nếu sai ở bất kì lỗi nào thì báo "Incorrect username or password!"
+    if (email && password) {
+      const buildInEmail = superAdmin.email;
+      const buildInPassword = superAdmin.password;
+
+      if (
+        validateEmail(email) &&
+        email === buildInEmail &&
+        password === buildInPassword
+      ) {
+        router.push("/admin/dashboard");
+        return;
+      }
+    }
+    toast.error("Incorrect username or password!");
   }
 
   return (
@@ -67,8 +91,8 @@ export default function Login() {
                     <input
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email: admin@voiz.vn"
+                      onChange={handleChangeEmail}
                       value={email}
                     />
                   </div>
@@ -83,8 +107,8 @@ export default function Login() {
                     <input
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Password: 123456"
+                      onChange={handleChangePassword}
                       value={password}
                     />
                   </div>
@@ -94,6 +118,8 @@ export default function Login() {
                         id="customCheckLogin"
                         type="checkbox"
                         className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                        onChange={handleChangeRememberMe}
+                        value={rememberMe}
                       />
                       <span className="ml-2 text-sm font-semibold text-blueGray-600">
                         Remember me
