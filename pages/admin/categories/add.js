@@ -1,23 +1,12 @@
-import React from "react";
-
-// components
-
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
-
-// layout for page
-
+import CategoryCardSettings from "components/Cards/CategoryCardSettings.js";
 import Admin from "layouts/Admin.js";
 
 export default function Add() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
-          <CardSettings title="Add new category" />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+        <div className="w-full px-4">
+          <CategoryCardSettings title="Add new category" />
         </div>
       </div>
     </>
