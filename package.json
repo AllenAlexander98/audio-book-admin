@@ -10,6 +10,8 @@
     "@emotion/styled": "^11.8.1",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@mui/material": "^5.5.3",
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.6",
     "@popperjs/core": "2.9.1",
     "@tailwindcss/forms": "0.2.1",
     "chart.js": "2.9.4",

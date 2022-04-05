@@ -1,23 +1,16 @@
-import React from "react";
-
-// components
-
-import BookCardSettings from "components/Cards/BookCardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
-
-// layout for page
+import InformationBookCard from "components/Cards/InformationBookCard";
 
 import Admin from "layouts/Admin.js";
+import { useRouter } from "next/router";
 
 export default function Add() {
+  const router = useRouter();
+  const { id } = router.query;
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
-          <BookCardSettings title="Add new book" />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+        <div className="w-full px-4">
+          <InformationBookCard title={`Add new book`} id={id} />
         </div>
       </div>
     </>
