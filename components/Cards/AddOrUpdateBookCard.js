@@ -1,5 +1,6 @@
-import IndexDropdown from "components/Dropdowns/IndexDropdown";
-import React from "react";
+import UpdateIndexDropdown from "components/Dropdowns/UpdateIndexDropdown";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 // components
 
@@ -22,15 +23,15 @@ const CATEGORIES = [
   },
 ];
 
-export default function CardAddOrUpdateBook({ title, id }) {
-  const [bookTitle, setBookTitle] = React.useState("");
-  const [bookAuthor, setBookAuthor] = React.useState("");
-  const [bookCategory, setBookCategory] = React.useState("");
-  const [bookPrice, setBookPrice] = React.useState(0);
-  const [bookDescription, setBookDescription] = React.useState("");
-  const [bookImage, setBookImage] = React.useState("/img/placeholder.png");
+export default function AddOrUpdateBookCard({ title, id, bookInfo }) {
+  const [bookTitle, setBookTitle] = useState(bookInfo.title);
+  const [bookAuthor, setBookAuthor] = useState(bookInfo.author);
+  const [bookCategory, setBookCategory] = useState(bookInfo.category);
+  const [bookPrice, setBookPrice] = useState(bookInfo.price);
+  const [bookDescription, setBookDescription] = useState(bookInfo.description);
+  const [bookImage, setBookImage] = useState(bookInfo.image);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (id) {
       fetchBookDetail(id);
     }
@@ -54,7 +55,9 @@ export default function CardAddOrUpdateBook({ title, id }) {
 
     if (id) {
       //Call api update book
+      toast.success("Update book success!");
     } else {
+      toast.success("Add book success!");
       //Call api add new book
     }
   };
@@ -94,7 +97,7 @@ export default function CardAddOrUpdateBook({ title, id }) {
                     <img src={bookImage} alt="Image" />
                   </label>
                   <input
-                    className="hidden form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    className="hidden form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="file"
                     id="book-image"
                     onChange={(e) => {
@@ -167,7 +170,7 @@ export default function CardAddOrUpdateBook({ title, id }) {
                   >
                     Category
                   </label>
-                  <IndexDropdown
+                  <UpdateIndexDropdown
                     label="Category"
                     dropdownList={CATEGORIES}
                     action={setBookCategory}
