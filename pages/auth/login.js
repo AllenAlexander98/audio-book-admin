@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { validateEmail } from "../../lib/Helper";
 
 // layoutfor page
 
 import Auth from "layouts/Auth.js";
 import { useRouter } from "next/router";
+
+const superAdmin = {
+  email: "admin@voiz.vn",
+  password: "123456",
+};
 export default function Login() {
-  
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,20 +27,12 @@ export default function Login() {
   const handleChangeRememberMe = (event) => {
     setRememberMe(event.target.checked);
   };
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-  function handleLogin() {
 
+  function handleLogin() {
     // giống github, nếu sai ở bất kì lỗi nào thì báo "Incorrect username or password!"
     if (email && password) {
-      
-      const buildInEmail = "admin@voiz.vn";
-      const buildInPassword = "123456";
+      const buildInEmail = superAdmin.email;
+      const buildInPassword = superAdmin.password;
 
       if (
         validateEmail(email) &&
@@ -94,7 +91,7 @@ export default function Login() {
                     <input
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Email"
+                      placeholder="Email: admin@voiz.vn"
                       onChange={handleChangeEmail}
                       value={email}
                     />
@@ -110,7 +107,7 @@ export default function Login() {
                     <input
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
+                      placeholder="Password: 123456"
                       onChange={handleChangePassword}
                       value={password}
                     />
@@ -122,6 +119,7 @@ export default function Login() {
                         type="checkbox"
                         className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                         onChange={handleChangeRememberMe}
+                        value={rememberMe}
                       />
                       <span className="ml-2 text-sm font-semibold text-blueGray-600">
                         Remember me
