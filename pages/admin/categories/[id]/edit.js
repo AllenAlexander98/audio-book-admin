@@ -1,14 +1,12 @@
-import React from "react";
-
-// components
-
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
-
-// layout for page
-
+import CategoryCardSettings from "components/Cards/CategoryCardSettings.js";
 import Admin from "layouts/Admin.js";
 import { useRouter } from "next/router";
+
+const category = {
+  id: 1,
+  name: "Category 1",
+  description: "Description 1",
+};
 
 export default function Edit() {
   const router = useRouter();
@@ -16,11 +14,11 @@ export default function Edit() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
-          <CardSettings title={`Edit ${id} category`} />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+        <div className="w-full px-4">
+          <CategoryCardSettings
+            title={`Edit ${id} category`}
+            category={category}
+          />
         </div>
       </div>
     </>
