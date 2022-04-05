@@ -6,23 +6,56 @@ import PropTypes from "prop-types";
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import { useRouter } from "next/router";
 
-const pageList = [];
-const NumPage = 10;
+const users = [];
 
-function createPageList(NumPage) {
-  for (let i = 0; i < NumPage; i++) {
+function fakedata() {
+  var firstNames = ['Pilar', 'Kentrell', 'Octavio', 'Jade', 'Niya', 'Perry', 'Ryleigh', 'Wayne', 'Cedrick', 'Daron'];
+  var lastNames = ['Brice', 'Jairo', 'Christopher', 'Mattie', 'Belen', 'Jessie', 'Albert', 'Talon', 'Mckenzie', 'Konnor'];
+  var streets = ['Democracy', 'Department', 'Dimitri', 'Dock', 'Dubni', 'Easter', 'East Hills', 'Easy', 'Elgin', 'Elisabeth'];
+  var districts = ['New York City, NY', 'Los Angeles, CA', 'Chicago, IL', 'Houston, TX', 'Phoenix, AZ', 'Philadelphia, PA', 'San Antonio, TX', 'San Diego, CA', 'Dallas, TX', 'San Jose, CA'];
+  var states = ['New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'PennsylvaniaRhode Island', 'South Carolina'];
+
+  for (let i = 0; i < 10; i++) {
+    var firstName = firstNames[(Math.floor(Math.random() * 10))];
+    var lastName = lastNames[(Math.floor(Math.random() * 10))];
+    var street = streets[(Math.floor(Math.random() * 10))];
+    var district = districts[(Math.floor(Math.random() * 10))];
+    var state = states[(Math.floor(Math.random() * 10))];
+    var no = Math.floor(Math.random() * 1000);
+
+    var fullName = firstName + ' ' + lastName;
+    var email = firstName + lastName + '@gmail.com';
+    var address = no + ', ' + street + ', ' + district + ', ' + state;
+
+    var user = {
+      'firstName': firstName,
+      'lastName': lastName,
+      'fullName': fullName,
+      'email': email,
+      'address': address
+    }
+
+    users.push(user);
+  }
+}
+
+const pageList = [];
+const numPage = 10;
+
+function createPageList(numPage) {
+  for (let i = 0; i < numPage; i++) {
     pageList.push(i + 1);
   }
 }
 
 
-export default function CardUsersTable({ color, title, Users }) {
+export default function CarduTable({ color, title}) {
   const router = useRouter();
   function handleAdd() {
     router.push(router.route + "/add");
   }
-
-  createPageList(NumPage);
+  fakedata();
+  createPageList(numPage);
   return (
     <>
       <div
@@ -122,22 +155,22 @@ export default function CardUsersTable({ color, title, Users }) {
 
             <tbody>
               {
-                Users.map(User => (
+                users.map(user => (
                   <tr>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {User.fullName}
+                      {user.fullName}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {User.email}
+                      {user.email}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {User.firstName}
+                      {user.firstName}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {User.lastName}
+                      {user.lastName}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {User.address}
+                      {user.address}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                       <TableDropdown />
@@ -169,10 +202,10 @@ export default function CardUsersTable({ color, title, Users }) {
   );
 }
 
-CardUsersTable.defaultProps = {
+CarduTable.defaultProps = {
   color: "light",
 };
 
-CardUsersTable.propTypes = {
+CarduTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };
