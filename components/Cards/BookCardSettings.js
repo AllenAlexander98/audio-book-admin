@@ -102,7 +102,7 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     id="book-image"
                     onChange={(e) => {
                       if (e.target.files[0]) {
-                        setBookImage(URL.createObjectURL(e.target.files[0]));
+                        setBookThumbnail(URL.createObjectURL(e.target.files[0]));
                       }
                     }}
                   />
