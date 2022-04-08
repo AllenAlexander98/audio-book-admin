@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 
-import UserCardSettings from "components/Cards/UserCardSettings.js";
+import UserCardEdit from "components/Cards/UserCardEdit.js";
 import UserCardProfile from "components/Cards/UserCardProfile.js";
 
 // layout for page
@@ -13,11 +13,13 @@ import { useRouter } from "next/router";
 export default function Edit() {
   const router = useRouter();
   const { id } = router.query;
+  const user = router.query;
+  console.log(user);
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
-          <UserCardSettings title={`Edit ${id} user`} />
+          <UserCardEdit title={`Edit ${id} user`} user = {user} />
         </div>
         <div className="w-full lg:w-4/12 px-4">
           <UserCardProfile />

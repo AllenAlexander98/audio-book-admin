@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableUserDropdown from "components/Dropdowns/TableUserDropdown.js";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -299,7 +299,7 @@ export default function UserCardTable({ color, title }) {
                     {user.address}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                    <TableDropdown router={router} id={user.id} />
+                    <TableUserDropdown router={router} id={user.id} user={user} users={users}/>
                   </td>
                 </tr>
               ))}
