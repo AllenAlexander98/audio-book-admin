@@ -1,70 +1,34 @@
 import CategoryCardTable from "components/Cards/CategoryCardTable.js";
 import Admin from "layouts/Admin.js";
-
-const categories = [
-  {
-    id: 1,
-    name: "Category 1",
-    description: "Description 1",
-  },
-  {
-    id: 2,
-    name: "Category 2",
-    description: "Description 2",
-  },
-  {
-    id: 3,
-    name: "Category 3",
-    description: "Description 3",
-  },
-  {
-    id: 4,
-    name: "Category 4",
-    description: "Description 4",
-  },
-  {
-    id: 5,
-    name: "Category 5",
-    description: "Description 5",
-  },
-  {
-    id: 6,
-    name: "Category 6",
-    description: "Description 6",
-  },
-  {
-    id: 1,
-    name: "Category 1",
-    description: "Description 1",
-  },
-  {
-    id: 2,
-    name: "Category 2",
-    description: "Description 2",
-  },
-  {
-    id: 3,
-    name: "Category 3",
-    description: "Description 3",
-  },
-  {
-    id: 4,
-    name: "Category 4",
-    description: "Description 4",
-  },
-  {
-    id: 5,
-    name: "Category 5",
-    description: "Description 5",
-  },
-  {
-    id: 6,
-    name: "Category 6",
-    description: "Description 6",
-  },
-];
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function Index() {
+  const router = useRouter();
+  const { jwt } = useSelector((state) => state.storeManage);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    if (jwt == "null") return router.push("/auth/login");
+    async function getCategories() {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/categories`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      if (res.status == 200) {
+        if (res.data.success == true) {
+          const data = res.data.data;
+          setCategories(data);
+        }
+      }
+    }
+    getCategories();
+  }, [jwt]);
   return (
     <>
       <div className="flex flex-wrap mt-4">

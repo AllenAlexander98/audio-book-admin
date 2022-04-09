@@ -1,8 +1,12 @@
 import { createPopper } from "@popperjs/core";
+import axios from "axios";
 import Link from "next/link";
 import { createRef, useState } from "react";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const TableDropdown = ({ router, id }) => {
+  const { jwt } = useSelector((state) => state.storeManage);
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
   const btnDropdownRef = createRef();
@@ -16,6 +20,55 @@ const TableDropdown = ({ router, id }) => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const handleDelete = async (id) => {
+    closeDropdownPopover();
+    const path = router.route.replace("/admin/", "");
+    console.log(path);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2",
+        cancelButton:
+          "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2",
+      },
+      buttonsStyling: false,
+    });
+
+    const sweetAlert = swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    });
+    const result = await sweetAlert;
+    if (result.isConfirmed) {
+      const res = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/${path}/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      if (res.status == 200) {
+        if (res.data.success == true) {
+          swalWithBootstrapButtons.fire(
+            "Deleted!",
+            res.data.message,
+            "success"
+          );
+          setTimeout(function () {
+            router.reload();
+          }, 3000);
+        }
+      }
+    }
+  };
+
   return (
     <>
       <a
@@ -43,15 +96,16 @@ const TableDropdown = ({ router, id }) => {
             Edit
           </a>
         </Link>
-        <Link href={`#`}>
-          <a
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-            }
-          >
-            Delete
-          </a>
-        </Link>
+        <a
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
+          }
+          onClick={() => {
+            handleDelete(id);
+          }}
+        >
+          Delete
+        </a>
       </div>
     </>
   );
