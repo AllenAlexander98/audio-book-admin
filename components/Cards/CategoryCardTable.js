@@ -106,7 +106,7 @@ export default function CategoryCardTable({ color, title, categories }) {
                             : "text-white")
                         }
                       >
-                        {category.id}
+                        {category._id}
                       </span>
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -117,7 +117,7 @@ export default function CategoryCardTable({ color, title, categories }) {
                     </td>
 
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                      <TableDropdown router={router} id={category.id} />
+                      <TableDropdown router={router} id={category._id} />
                     </td>
                   </tr>
                 ))}

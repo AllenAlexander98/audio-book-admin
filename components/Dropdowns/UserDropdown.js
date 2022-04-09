@@ -1,9 +1,12 @@
 import { createPopper } from "@popperjs/core";
 import { useRouter } from "next/router";
 import { createRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateJwt, updateUser } from "redux/storeManage";
 
 const UserDropdown = () => {
   // dropdown props
+  const dispatch = useDispatch();
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
   const btnDropdownRef = createRef();
   const popoverDropdownRef = createRef();
@@ -19,6 +22,8 @@ const UserDropdown = () => {
 
   const router = useRouter();
   function handleLogout() {
+    dispatch(updateJwt("null"));
+    dispatch(updateUser("null"));
     router.push("/auth/login");
   }
   return (
