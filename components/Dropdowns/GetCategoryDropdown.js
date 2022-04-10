@@ -1,9 +1,14 @@
 import { createPopper } from "@popperjs/core";
 import { createRef, useState } from "react";
 
-const GetCategoryDropdown = ({ label, categories, action }) => {
+const GetCategoryDropdown = ({
+  label,
+  categories,
+  category,
+  setCategory,
+  setCategoryId,
+}) => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
-  const [dropdownValue, setDropdownValue] = useState(null);
   const btnDropdownRef = createRef();
   const popoverDropdownRef = createRef();
 
@@ -28,7 +33,7 @@ const GetCategoryDropdown = ({ label, categories, action }) => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        {(dropdownValue && dropdownValue.name) || label}
+        {category || label}
       </a>
       <div
         ref={popoverDropdownRef}
@@ -45,9 +50,9 @@ const GetCategoryDropdown = ({ label, categories, action }) => {
                 "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
               }
               onClick={() => {
-                setDropdownValue(category);
                 setDropdownPopoverShow(false);
-                action(category.id);
+                setCategory(category.name);
+                setCategoryId(category._id);
               }}
             >
               {category.name}

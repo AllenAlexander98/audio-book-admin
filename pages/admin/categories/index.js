@@ -1,5 +1,5 @@
-import CategoryCardTable from "components/Cards/CategoryCardTable.js";
-import Admin from "layouts/Admin.js";
+import CategoryCardTable from "components/Cards/CategoryCardTable";
+import Admin from "layouts/Admin";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,12 +13,7 @@ export default function Index() {
     if (jwt == "null") return router.push("/auth/login");
     async function getCategories() {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/categories`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
+        `${process.env.NEXT_PUBLIC_API_URL}/categories`
       );
       if (res.status == 200) {
         if (res.data.success == true) {
