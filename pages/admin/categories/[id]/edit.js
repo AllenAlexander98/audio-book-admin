@@ -16,12 +16,7 @@ export default function Edit() {
     async function getCategory() {
       if (id != undefined) {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
+          `${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`
         );
         if (res.status == 200) {
           if (res.data.success == true) {

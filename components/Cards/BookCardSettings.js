@@ -1,64 +1,121 @@
 import GetCategoryDropdown from "components/Dropdowns/GetCategoryDropdown";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-const categories = [
-  {
-    name: "Cat 1",
-    id: "1",
-  },
-  {
-    name: "Cat 2",
-    id: "2",
-  },
-  {
-    name: "Cat 3",
-    id: "3",
-  },
-  {
-    name: "Cat 4",
-    id: "4",
-  },
-];
+function readFileAsync(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+  });
+}
 
-export default function BookCardSettings({ title, id, bookInfo }) {
-  const [bookName, setBookName] = useState(bookInfo?.name ?? "");
-  const [bookAuthor, setBookAuthor] = useState(bookInfo?.author ?? "");
-  const [bookCategory, setBookCategory] = useState(bookInfo?.category ?? "");
-  const [bookPrices, setBookPrices] = useState(bookInfo?.prices ?? 0);
-  const [bookDescription, setBookDescription] = useState(
-    bookInfo?.description ?? ""
-  );
-  const [bookThumbnail, setBookThumbnail] = useState(
-    bookInfo?.thumbnail ?? "/img/placeholder.png"
-  );
+export default function BookCardSettings({
+  title,
+  book,
+  categories,
+  jwt,
+  router,
+}) {
+  const [name, setName] = useState("");
+  const [author, setAuthor] = useState("");
+  const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [isVip, setIsVip] = useState(false);
+  const [prices, setPrices] = useState(0);
+  const [description, setDescription] = useState("");
+  const [channel, setChannel] = useState("");
+  const [thumbnail, setThumbnail] = useState("/img/placeholder.png");
+  const [fileUploadThumbnail, setFileUploadThumbnail] = useState(null);
+  // const [resultThumbnail, setResultThumbnail] = useState("");
 
   useEffect(() => {
-    if (id) {
-      fetchBookDetail(id);
+    setName(book?.name ?? "");
+    setAuthor(book?.author ?? "");
+    setCategory(book?.categoryId?.name ?? "");
+    setCategoryId(book?.categoryId?._id ?? "");
+    setIsVip(book?.isVip ?? false);
+    setPrices(book?.prices ?? 0);
+    setDescription(book?.description ?? "");
+    setChannel(book?.channel ?? "");
+    setThumbnail(book?.thumbnail ?? "/img/placeholder.png");
+  }, [book]);
+
+  const handleSubmit = async () => {
+    if (thumbnail == "/img/placeholder.png") {
+      toast.error("Please upload a thumbnail");
+      return;
     }
-  }, [id]);
+    if (categoryId == "") {
+      toast.error("Please select a category");
+      return;
+    }
+    if (name == "") {
+      toast.error("Please enter a name");
+      return;
+    }
 
-  const fetchBookDetail = (id) => {
-    //Call api get book detail
-  };
-
-  const onSubmit = () => {
-    const bookInfo = {
-      name: bookName,
-      description: bookDescription,
-      thumbnail: bookThumbnail,
-      author: bookAuthor,
-      category: bookCategory,
-      prices: bookPrices,
-    };
-
-    if (id) {
-      //Call api update book
-      toast.success("Update book success!");
+    const resultThumbnail = null;
+    if (fileUploadThumbnail == null) {
+      resultThumbnail = thumbnail;
     } else {
-      //Call api add new book
-      toast.success("Add book success!");
+      resultThumbnail = await readFileAsync(fileUploadThumbnail);
+    }
+    if (book?._id) {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
+        {
+          name,
+          author,
+          categoryId,
+          isVip,
+          prices,
+          description,
+          channel,
+          thumbnail: resultThumbnail,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      if (res.status == 200) {
+        if (res.data.success == true) {
+          toast.success(res.data.message);
+          router.push("/admin/books");
+        }
+      }
+    } else {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/books`,
+        {
+          name,
+          author,
+          categoryId,
+          isVip,
+          prices,
+          description,
+          channel,
+          thumbnail: resultThumbnail,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      if (res.status == 200) {
+        if (res.data.success == true) {
+          toast.success(res.data.message);
+          router.push("/admin/books");
+        }
+      }
     }
   };
 
@@ -71,9 +128,9 @@ export default function BookCardSettings({ title, id, bookInfo }) {
               {title ?? "My account"}
             </h6>
             <button
-              className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+              className="bg-gray-700 active:bg-gray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
-              onClick={() => onSubmit()}
+              onClick={() => handleSubmit()}
             >
               Save
             </button>
@@ -94,15 +151,17 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     <span className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                       Thumbnail
                     </span>
-                    <img src={bookThumbnail} alt="Image" />
+                    <img src={thumbnail} alt="Image" />
                   </label>
                   <input
                     className="hidden form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="file"
+                    accept="image/png, image/jpeg"
                     id="book-image"
                     onChange={(e) => {
                       if (e.target.files[0]) {
-                        setBookThumbnail(URL.createObjectURL(e.target.files[0]));
+                        setThumbnail(URL.createObjectURL(e.target.files[0]));
+                        setFileUploadThumbnail(e.target.files[0]);
                       }
                     }}
                   />
@@ -120,9 +179,9 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     id="book-title"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={bookName}
+                    value={name}
                     placeholder="Enter name"
-                    onChange={(e) => setBookName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
               </div>
@@ -139,8 +198,8 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Enter author"
-                    value={bookAuthor}
-                    onChange={(e) => setBookAuthor(e.target.value)}
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
                   />
                 </div>
               </div>
@@ -156,9 +215,27 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     id="book-price"
                     type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    value={bookPrices}
+                    value={prices}
                     min={0}
-                    onChange={(e) => setBookPrices(e.target.value)}
+                    onChange={(e) => setPrices(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="book-channel"
+                  >
+                    Channel
+                  </label>
+                  <input
+                    id="book-channel"
+                    type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Enter channel"
+                    value={channel}
+                    onChange={(e) => setChannel(e.target.value)}
                   />
                 </div>
               </div>
@@ -173,7 +250,9 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                   <GetCategoryDropdown
                     label="Select a category"
                     categories={categories}
-                    action={(value) => setBookCategory(value)}
+                    category={category}
+                    setCategory={setCategory}
+                    setCategoryId={setCategoryId}
                   />
                 </div>
               </div>
@@ -190,8 +269,8 @@ export default function BookCardSettings({ title, id, bookInfo }) {
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     rows="4"
                     placeholder="Enter description"
-                    value={bookDescription}
-                    onChange={(e) => setBookDescription(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   ></textarea>
                 </div>
               </div>
