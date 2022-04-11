@@ -1,5 +1,5 @@
-import UserCardTable from "components/Cards/UserCardTable.js";
-import Admin from "layouts/Admin.js";
+import UserCardTable from "components/Cards/UserCardTable";
+import Admin from "layouts/Admin";
 
 export default function Index() {
   return (

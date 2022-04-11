@@ -29,14 +29,14 @@ const UserDropdown = () => {
   return (
     <>
       <a
-        className="text-blueGray-500 block cursor-pointer"
+        className="text-gray-500 block cursor-pointer"
         ref={btnDropdownRef}
         onClick={() => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
         <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
+          <span className="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full">
             <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
@@ -55,16 +55,16 @@ const UserDropdown = () => {
         <a
           href="#pablo"
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"
           }
           onClick={(e) => e.preventDefault()}
         >
           Action
         </a>
-        <div className="h-0 my-2 border border-solid border-blueGray-100" />
+        <div className="h-0 my-2 border border-solid border-gray-100" />
         <a
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 cursor-pointer"
           }
           onClick={() => handleLogout()}
         >

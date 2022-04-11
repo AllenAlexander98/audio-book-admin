@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import NotificationDropdown from "components/Dropdowns/NotificationDropdown";
+import UserDropdown from "components/Dropdowns/UserDropdown";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -21,7 +21,7 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link href="/admin/dashboard">
-            <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+            <a className="md:block text-left md:pb-2 text-gray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
               Audio Book
             </a>
           </Link>
@@ -42,11 +42,11 @@ export default function Sidebar() {
             }
           >
             {/* Collapse header */}
-            <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
+            <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-gray-200">
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+                    <a className="md:block text-left md:pb-2 text-gray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
                       Notus NextJS
                     </a>
                   </Link>
@@ -68,7 +68,7 @@ export default function Sidebar() {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                  className="border-0 px-3 py-2 h-12 border border-solid  border-gray-500 placeholder-gray-300 text-gray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                 />
               </div>
             </form>
@@ -76,7 +76,7 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            <h6 className="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Admin Layout Pages
             </h6>
             {/* Navigation */}
@@ -89,7 +89,7 @@ export default function Sidebar() {
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-gray-700 hover:text-gray-500")
                     }
                   >
                     <i
@@ -97,7 +97,7 @@ export default function Sidebar() {
                         "fas fa-tv mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-gray-300")
                       }
                     />
                     Dashboard
@@ -112,7 +112,7 @@ export default function Sidebar() {
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/categories") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-gray-700 hover:text-gray-500")
                     }
                   >
                     <i
@@ -120,7 +120,7 @@ export default function Sidebar() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/categories") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-gray-300")
                       }
                     />
                     Categories
@@ -135,7 +135,7 @@ export default function Sidebar() {
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/books") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-gray-700 hover:text-gray-500")
                     }
                   >
                     <i
@@ -143,7 +143,7 @@ export default function Sidebar() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/books") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-gray-300")
                       }
                     />
                     Books
@@ -158,7 +158,7 @@ export default function Sidebar() {
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/users") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-gray-700 hover:text-gray-500")
                     }
                   >
                     <i
@@ -166,7 +166,7 @@ export default function Sidebar() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/users") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-gray-300")
                       }
                     />
                     Users
@@ -181,7 +181,7 @@ export default function Sidebar() {
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        : "text-gray-700 hover:text-gray-500")
                     }
                   >
                     <i
@@ -189,7 +189,7 @@ export default function Sidebar() {
                         "fas fa-tools mr-2 text-sm " +
                         (router.pathname.indexOf("/admin/settings") !== -1
                           ? "opacity-75"
-                          : "text-blueGray-300")
+                          : "text-gray-300")
                       }
                     />
                     Settings

@@ -5,7 +5,7 @@ import { createRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-const TableDropdown = ({ router, id }) => {
+const BookDropdown = ({ router, id }) => {
   const { jwt } = useSelector((state) => state.storeManage);
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
@@ -87,6 +87,15 @@ const TableDropdown = ({ router, id }) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
+        <Link href={`${router.asPath}/${id}/audios`}>
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"
+            }
+          >
+            Audio List
+          </a>
+        </Link>
         <Link href={`${router.asPath}/${id}/edit`}>
           <a
             className={
@@ -111,4 +120,4 @@ const TableDropdown = ({ router, id }) => {
   );
 };
 
-export default TableDropdown;
+export default BookDropdown;

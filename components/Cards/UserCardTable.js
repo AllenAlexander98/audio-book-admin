@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableDropdown from "components/Dropdowns/TableDropdown";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -188,7 +188,7 @@ export default function UserCardTable({ color, title }) {
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-          (color === "light" ? "bg-white" : "bg-blueGray-700 text-white")
+          (color === "light" ? "bg-white" : "bg-gray-700 text-white")
         }
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
@@ -197,14 +197,14 @@ export default function UserCardTable({ color, title }) {
               <h3
                 className={
                   "font-semibold text-lg " +
-                  (color === "light" ? "text-blueGray-700" : "text-white")
+                  (color === "light" ? "text-gray-700" : "text-white")
                 }
               >
                 {title ?? "Card Tables"}
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <Link href={`${router.route}/add`}>
+              <Link href={`${router.asPath}/add`}>
                 <a className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                   Add
                 </a>
@@ -221,8 +221,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
                   User Name
@@ -231,8 +231,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
                   Email
@@ -241,8 +241,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
                   First Name
@@ -251,8 +251,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
                   Last Name
@@ -261,8 +261,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
                   Address
@@ -271,8 +271,8 @@ export default function UserCardTable({ color, title }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 ></th>
               </tr>

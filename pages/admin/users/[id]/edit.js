@@ -2,12 +2,12 @@ import React from "react";
 
 // components
 
-import UserCardSettings from "components/Cards/UserCardSettings.js";
-import UserCardProfile from "components/Cards/UserCardProfile.js";
+import UserCardSettings from "components/Cards/UserCardSettings";
+import UserCardProfile from "components/Cards/UserCardProfile";
 
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin";
 import { useRouter } from "next/router";
 
 export default function Edit() {

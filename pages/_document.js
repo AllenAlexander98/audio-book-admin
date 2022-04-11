@@ -16,7 +16,7 @@ class MyDocument extends Document {
           />
           <script src="https://cdn.tailwindcss.com"></script>
         </Head>
-        <body className="text-blueGray-700 antialiased">
+        <body className="text-gray-700 antialiased">
           <div id="page-transition"></div>
           <Main />
           <NextScript />
