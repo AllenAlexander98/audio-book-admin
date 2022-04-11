@@ -5,7 +5,7 @@ import TableDropdown from "components/Dropdowns/TableDropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function CategoryCardTable({ color, title, categories }) {
+export default function AudioCardTable({ color, title, audios }) {
   const router = useRouter();
   // const [page, setPage] = useState(0);
   // const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -60,16 +60,6 @@ export default function CategoryCardTable({ color, title, categories }) {
                       : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
-                  ID
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-50 text-gray-500 border-gray-100"
-                      : "bg-gray-600 text-gray-200 border-gray-500")
-                  }
-                >
                   NAME
                 </th>
                 <th
@@ -80,7 +70,17 @@ export default function CategoryCardTable({ color, title, categories }) {
                       : "bg-gray-600 text-gray-200 border-gray-500")
                   }
                 >
-                  Description
+                  URL
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-gray-50 text-gray-500 border-gray-100"
+                      : "bg-gray-600 text-gray-200 border-gray-500")
+                  }
+                >
+                  Listen
                 </th>
                 <th
                   className={
@@ -93,31 +93,24 @@ export default function CategoryCardTable({ color, title, categories }) {
               </tr>
             </thead>
             <tbody>
-              {categories
+              {audios
                 // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((category, key) => (
+                .map((audio, key) => (
                   <tr key={key}>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                      <span
-                        className={
-                          "ml-3 font-bold " +
-                          +(color === "light"
-                            ? "text-gray-600"
-                            : "text-white")
-                        }
-                      >
-                        {category._id}
-                      </span>
-                    </th>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {category.name}
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-bold">
+                      {audio.name}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {category.description}
+                      {audio.url}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <audio controls>
+                        <source src={audio.url} type="audio/mpeg" />
+                      </audio>
                     </td>
 
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                      <TableDropdown router={router} id={category._id} />
+                      <TableDropdown router={router} id={audio._id} />
                     </td>
                   </tr>
                 ))}
@@ -137,10 +130,10 @@ export default function CategoryCardTable({ color, title, categories }) {
   );
 }
 
-CategoryCardTable.defaultProps = {
+AudioCardTable.defaultProps = {
   color: "light",
 };
 
-CategoryCardTable.propTypes = {
+AudioCardTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

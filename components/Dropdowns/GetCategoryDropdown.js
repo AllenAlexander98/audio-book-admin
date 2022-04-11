@@ -26,7 +26,7 @@ const GetCategoryDropdown = ({
   return (
     <>
       <a
-        className="cursor-pointer border-0 shadow ease-linear transition-all rounded duration-150 bg-white focus:outline-none hover:text-blueGray-500 text-blueGray-700 px-3 py-3 flex items-center text-sm"
+        className="cursor-pointer border-0 shadow ease-linear transition-all rounded duration-150 bg-white focus:outline-none hover:text-gray-500 text-gray-700 px-3 py-3 flex items-center text-sm"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -47,7 +47,7 @@ const GetCategoryDropdown = ({
             <a
               key={key}
               className={
-                "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                "cursor-pointer text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"
               }
               onClick={() => {
                 setDropdownPopoverShow(false);
