@@ -1,23 +1,16 @@
-import React from "react";
-
-// components
-
 import UserCardSettings from "components/Cards/UserCardSettings";
-import UserCardProfile from "components/Cards/UserCardProfile";
-
-// layout for page
-
 import Admin from "layouts/Admin";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Add() {
+  const router = useRouter();
+  const { jwt } = useSelector((state) => state.storeManage);
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
-          <UserCardSettings title="Add new user" />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
-          <UserCardProfile />
+        <div className="w-full px-4">
+          <UserCardSettings title="Add new user" jwt={jwt} router={router} />
         </div>
       </div>
     </>
