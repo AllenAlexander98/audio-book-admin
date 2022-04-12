@@ -197,6 +197,30 @@ export default function BookCardSettings({
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                    htmlFor="isVip"
+                  >
+                    isVip
+                  </label>
+                  <div>
+                    <label className="flex items-center cursor-pointer w-9">
+                      <input
+                        id="isVip"
+                        type="checkbox"
+                        className="form-checkbox border-0 rounded text-gray-700 ml-1 w-9 h-9 m-1 ease-linear transition-all duration-150 cursor-pointer"
+                        onChange={() => {
+                          setIsVip(!isVip);
+                        }}
+                        value={isVip}
+                        checked={isVip}
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-gray-600 text-xs font-bold mb-2"
                     htmlFor="book-price"
                   >
                     Prices
@@ -204,10 +228,13 @@ export default function BookCardSettings({
                   <input
                     id="book-price"
                     type="number"
-                    className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className={`border-0 px-3 py-3 placeholder-gray-300 text-gray-600 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                      isVip == true ? "bg-white" : "bg-gray-100"
+                    }`}
                     value={prices}
                     min={0}
                     onChange={(e) => setPrices(e.target.value)}
+                    disabled={isVip == true ? false : true}
                   />
                 </div>
               </div>
@@ -233,7 +260,7 @@ export default function BookCardSettings({
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                    htmlFor="book-duration"
+                    htmlFor="book-category"
                   >
                     Category
                   </label>

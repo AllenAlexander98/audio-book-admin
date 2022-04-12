@@ -170,7 +170,7 @@ export default function UserCardSettings({ title, user, jwt, router }) {
                       <input
                         id="isAdmin"
                         type="checkbox"
-                        className="form-checkbox border-0 rounded text-gray-700 ml-1 w-9 h-9 ease-linear transition-all duration-150 cursor-pointer"
+                        className="form-checkbox border-0 rounded text-gray-700 ml-1 w-9 h-9 m-1 ease-linear transition-all duration-150 cursor-pointer"
                         onChange={() => setIsAdmin(!isAdmin)}
                         value={isAdmin}
                         checked={isAdmin}
@@ -193,7 +193,7 @@ export default function UserCardSettings({ title, user, jwt, router }) {
                       <input
                         id="isLock"
                         type="checkbox"
-                        className="form-checkbox border-0 rounded text-gray-700 ml-1 w-9 h-9 ease-linear transition-all duration-150 cursor-pointer"
+                        className="form-checkbox border-0 rounded text-gray-700 ml-1 w-9 h-9 m-1 ease-linear transition-all duration-150 cursor-pointer"
                         onChange={() => setIsLock(!isLock)}
                         checked={isLock}
                         disabled={email == "admin@admin.com" ? true : false}
