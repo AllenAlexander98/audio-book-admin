@@ -109,6 +109,7 @@ export default function BookCardSettings({
     }
   };
 
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0">
@@ -146,7 +147,7 @@ export default function BookCardSettings({
                   <input
                     className="hidden form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="file"
-                    accept="image/png, image/jpeg"
+                    accept="image/*"
                     id="book-image"
                     onChange={(e) => {
                       if (e.target.files[0]) {

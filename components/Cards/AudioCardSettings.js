@@ -136,7 +136,7 @@ export default function AudioCardSettings({ title, id, audio, jwt, router }) {
                 <input
                   className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   type="file"
-                  accept="audio/mp3,audio/*;capture=microphone"
+                  accept="audio/*"
                   id="chapter-file"
                   onChange={(e) => {
                     if (e.target.files[0]) {
