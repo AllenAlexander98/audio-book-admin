@@ -19,7 +19,7 @@ export default function Index() {
         );
         if (res.status == 200) {
           if (res.data.success == true) {
-            const data = res.data.data;
+            const data = res.data.data.audios;
             setAudios(data);
           }
         }

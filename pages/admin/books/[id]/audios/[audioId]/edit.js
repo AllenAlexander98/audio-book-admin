@@ -20,7 +20,7 @@ export default function Edit() {
         );
         if (res.status == 200) {
           if (res.data.success == true) {
-            const data = res.data.data;
+            const data = res.data.data.audio;
             setAudio(data);
           }
         }
