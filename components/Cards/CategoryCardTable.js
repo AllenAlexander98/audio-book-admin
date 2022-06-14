@@ -4,19 +4,11 @@ import PropTypes from 'prop-types';
 import TableDropdown from 'components/Dropdowns/TableDropdown';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { Pagination } from '@mui/material';
 
-export default function CategoryCardTable({ color, title, categories }) {
+export default function CategoryCardTable({ color, title, categories, pagination }) {
     const router = useRouter();
-    // const [page, setPage] = useState(0);
-    // const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    // const handleChangePage = (event, newPage) => {
-    //   setPage(newPage);
-    // };
-    // const handleChangeRowsPerPage = (event) => {
-    //   setRowsPerPage(parseInt(event.target.value, 10));
-    //   setPage(0);
-    // };
     return (
         <>
             <div
@@ -119,16 +111,17 @@ export default function CategoryCardTable({ color, title, categories }) {
                                 ))}
                         </tbody>
                     </table>
-                    {/* <TablePagination
-            component="div"
-            count={100}
-            page={page}
-            onPageChange={handleChangePage}
-            rowsPerPage={rowsPerPage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          /> */}
                 </div>
             </div>
+            <Pagination
+                count={pagination.pageCount}
+                showFirstButton
+                showLastButton
+                page={pagination.page}
+                onChange={(event, page) => {
+                    router.push('/admin/category?page=' + page);
+                }}
+            />
         </>
     );
 }

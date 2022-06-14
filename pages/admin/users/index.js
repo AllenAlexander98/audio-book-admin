@@ -10,10 +10,11 @@ export default function Index() {
     const { jwt } = useSelector((state) => state.storeManage);
     const [users, setUsers] = useState([]);
     const [pagination, setPagination] = useState({});
+    const page = router.query.page;
     useEffect(() => {
         if (jwt == 'null') return router.push('/auth/login');
         async function getUsers() {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users?pageNum=${page}`, {
                 headers: {
                     Authorization: `Bearer ${jwt}`,
                 },
@@ -21,14 +22,14 @@ export default function Index() {
             if (res.status == 200) {
                 if (res.data.success == true) {
                     const data = res.data.data.users;
-                    const pagination = res.data.data.pagination;
                     setUsers(data);
+                    const pagination = res.data.data.pagination;
                     setPagination(pagination);
                 }
             }
         }
         getUsers();
-    }, [jwt]);
+    }, [jwt, page]);
     return (
         <>
             <div className="flex flex-wrap mt-4">

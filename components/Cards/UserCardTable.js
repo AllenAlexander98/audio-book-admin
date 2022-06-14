@@ -3,12 +3,7 @@ import TableDropdown from 'components/Dropdowns/TableDropdown';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Link from 'next/link';
-
-function createPageList(numPage) {
-    for (let i = 0; i < numPage; i++) {
-        pageList.push(i + 1);
-    }
-}
+import { Pagination } from '@mui/material';
 
 export default function UserCardTable({ color, title, users, pagination }) {
     const router = useRouter();
@@ -150,22 +145,15 @@ export default function UserCardTable({ color, title, users, pagination }) {
                 </div>
             </div>
 
-            {/* <div className="container flex justify-center mx-auto">
-                <ul className="flex">
-                    <li>
-                        <button className="px-4 py-2 text-gray-600 bg-white border border-gray-600">Prev</button>
-                    </li>
-
-                    {pageList.map((page, key) => (
-                        <li key={key}>
-                            <button className="px-4 py-2 text-gray-600 bg-white border border-gray-600 ">{page}</button>
-                        </li>
-                    ))}
-                    <li>
-                        <button className="px-4 py-2 text-gray-600 bg-white border border-gray-600">Next</button>
-                    </li>
-                </ul>
-            </div> */}
+            <Pagination
+                count={pagination.pageCount}
+                showFirstButton
+                showLastButton
+                page={pagination.page}
+                onChange={(event, page) => {
+                    router.push('/admin/users?page=' + page);
+                }}
+            />
         </>
     );
 }
