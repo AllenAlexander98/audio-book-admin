@@ -26,7 +26,7 @@ export default function BookCardTable({ color, title, books, pagination }) {
                             </h3>
                         </div>
                         <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                            <Link href={`${router.asPath}/add`}>
+                            <Link href={`${router.pathname}/add`}>
                                 <a className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                     Add
                                 </a>

@@ -23,7 +23,7 @@ const BookDropdown = ({ router, id }) => {
 
   const handleDelete = async (id) => {
     closeDropdownPopover();
-    const path = router.asPath.replace("/admin/", "");
+    const path = router.pathname.replace("/admin/", "");
     console.log(path);
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -87,7 +87,7 @@ const BookDropdown = ({ router, id }) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link href={`${router.asPath}/${id}/audios`}>
+        <Link href={`${router.pathname}/${id}/audios`}>
           <a
             className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"
@@ -96,7 +96,7 @@ const BookDropdown = ({ router, id }) => {
             Audio List
           </a>
         </Link>
-        <Link href={`${router.asPath}/${id}/edit`}>
+        <Link href={`${router.pathname}/${id}/edit`}>
           <a
             className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700"

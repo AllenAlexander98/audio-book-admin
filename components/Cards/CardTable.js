@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export default function CardTable({ color, title }) {
   const router = useRouter();
   function handleAdd() {
-    router.push(router.asPath + "/add");
+    router.push(router.pathname + "/add");
   }
   return (
     <>
