@@ -28,8 +28,4 @@ workflows:
   test-workflow:
     jobs:
       - setup-test
-      - node/test:
-          requires:
-            - setup-test
-          override-ci-command: npm install
 
