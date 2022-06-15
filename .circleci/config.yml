@@ -31,5 +31,5 @@ workflows:
       - node/test:
           requires:
             - setup-test
-          override-ci-command: yarn install
+          override-ci-command: npm install
 
